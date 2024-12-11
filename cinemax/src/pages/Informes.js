@@ -1,19 +1,27 @@
-import React, { useEffect, useState } from 'react';
-import api from '../services/api';
+import React, { useState, useEffect } from 'react';
+import { getReservas } from '../services/api';  // Importa la función getReservas
 
 const Informes = () => {
-    const [informes, setInformes] = useState({});
+    const [informes, setInformes] = useState([]);
 
     useEffect(() => {
-        api.getInformes().then(data => setInformes(data));
+        getReservas()
+            .then(data => {
+                setInformes(data);  // Aquí actualizas los informes con las reservas obtenidas
+            })
+            .catch(error => {
+                console.error('Error al obtener los informes:', error);
+            });
     }, []);
 
     return (
         <div>
-            <h2>Informes de taquilla</h2>
-            <p>Boletas vendidas: {informes.boletasVendidas}</p>
-            <p>Total ventas: {informes.totalVentas}</p>
-            <p>Porcentaje de ocupación: {informes.porcentajeOcupacion}%</p>
+            <h2>Informes de Reservas</h2>
+            <ul>
+                {informes.map((reserva, index) => (
+                    <li key={index}>{reserva.nombre} - {new Date(reserva.fecha).toLocaleString()}</li>
+                ))}
+            </ul>
         </div>
     );
 };
