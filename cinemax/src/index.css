@@ -1,0 +1,19 @@
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f9; /* Un fondo suave y claro */
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  color: #343a40; /* Un color más oscuro para el encabezado */
+}
+
+.navbar {
+  border-bottom: 2px solid #ddd; /* Línea sutil debajo de la navbar */
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+}
